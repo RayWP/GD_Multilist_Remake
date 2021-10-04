@@ -1,5 +1,14 @@
 #include "header.h"
 
+Person makePerson(string name, int age)
+{
+	Person person;
+	strcpy(person.name, name);
+	person.age = age;
+
+	return person;
+}
+
 void createEmpty(ListParent *L)
 {
 	(*L).first=NULL;
@@ -18,33 +27,42 @@ int HaveChild(adrParent P)
 	else
 		return 0;	
 }
-adrParent AlokasiP(int id)
+adrParent AlokasiP(Person person)
 {
 	adrParent P;
 	P=(adrParent) malloc(sizeof(Parent));
-	P->id=id;
+	P->person=person;
 	P->nextParent=NULL;
 	P->firstChild=NULL;
 	return P;
 }
-adrParent FindParent(ListParent L,int id)
+adrParent FindParent(ListParent L,string name)
 {
+	
 	adrParent P=L.first;
-	while(P!=NULL && P->id!=id)
+	while(P!=NULL)
 	{
-		P=P->nextParent;
+		printf("iteration\n");
+		if(strcmpi(P->person.name,name)!=0) 
+		{
+			printf("\n searchign parent");
+			P=P->nextParent;
+		} else {
+			return P;
+		}
 	}
+
 	return P;
 }
-void insertFirstParent(ListParent *L,int databaru)
+void insertFirstParent(ListParent *L,Person databaru)
 {
 	adrParent P;
 	P=AlokasiP(databaru);
 	P->nextParent=(*L).first;
 	(*L).first=P;
-	printf("INSERTED");
+	printf("INSERTED FIRST PARENT");
 }
-void insertLastParent(ListParent *L,int databaru)
+void insertLastParent(ListParent *L,Person databaru)
 {
 	adrParent P,last;
 	if(isEmpty(*L))
@@ -57,10 +75,10 @@ void insertLastParent(ListParent *L,int databaru)
 			last=last->nextParent;
 		}
 		last->nextParent=P;
-		printf("INSERTED");
+		printf("INSERTED LAST PARENT");
 	}	
 }
-void insertAfterParent(ListParent *L,int datasebelum,int databaru)
+void insertAfterParent(ListParent *L,string datasebelum,Person databaru)
 {
 	adrParent P, cari;
 	cari=FindParent((*L),datasebelum);
@@ -108,7 +126,7 @@ void deleteLastParent(ListParent *L)
 			printf("DELETED");	
 	}	
 }
-void deleteAfterParent(ListParent *L, int datasebelum)
+void deleteAfterParent(ListParent *L, string datasebelum)
 {
 	adrParent del,cari;
 	cari=FindParent((*L),datasebelum);
@@ -136,7 +154,7 @@ void printAll(ListParent L)
 		P=L.first;
 		while(P!=NULL)
 		{
-			printf("\nID Parent : %d",P->id);
+			printf("\nID Parent : %s",P->person.name);
 			if(HaveChild(P))
 			{
 				C=P->firstChild;
@@ -254,7 +272,7 @@ void printChildByParent(ListParent L,int idP)
 			printf("\nParent tdk ada");
 		else
 		{
-			printf("\nId Parent : %d",P->id);
+			printf("\nId Parent : %d",P->person.name);
 			if(!HaveChild(P))			
 				printf("\nTidak punya anak");	
 			else

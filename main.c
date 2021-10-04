@@ -1,4 +1,4 @@
-#include "header.h"
+#include "source.c"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -6,7 +6,9 @@ int main(int argc, char *argv[]) {
 	ListParent L;
 	adrParent P;
 	adrChild C;
-	int menu,id,idP;
+	int menu,id,idP,age;
+	string name, targetName;
+	Person person;
 	char idC;
 	createEmpty(&L);
 	
@@ -31,25 +33,31 @@ int main(int argc, char *argv[]) {
 			switch(menu)
 			{
 			case 1 : 
-				printf("\nMasukkan ID parent : ");scanf("%d",&id);
-				insertFirstParent(&L,id);
+				printf("\tMasukkan nama: "); fflush(stdin); gets(name);
+				printf("\tMasukkan umur: "); scanf("%d", &age);
+				person = makePerson(name, age);
+				insertFirstParent(&L, person);
 				break;
 			case 2 :
-				printf("\nMasukkan ID parent : ");scanf("%d",&id);
-				insertLastParent(&L,id);
+				printf("\tMasukkan nama: "); fflush(stdin); gets(name);
+				printf("\tMasukkan umur: "); scanf("%d", &age);
+				person = makePerson(name, age);
+				insertLastParent(&L, person);
 				break;
 			case 3 :
-				printf("\nMasukkan ID parent : ");scanf("%d",&idP);
-				printf("\nMasukkan ID parent yg akan disisipkan data setelahnya : ");scanf("%d",&id);
-				insertAfterParent(&L,id,idP);
+				printf("\tMasukkan nama: "); fflush(stdin); gets(name);
+				printf("\tMasukkan umur: "); scanf("%d", &age);
+				person = makePerson(name, age);
+				printf("\nMasukkan nama parent yg akan disisipkan data setelahnya : "); fflush(stdin); gets(targetName);
+				insertAfterParent(&L,targetName,person);
 				break;
 			case 4 : deleteFirstParent(&L);
 				break;
 			case 5 : deleteLastParent(&L);
 				break;
 			case 6 :
-				printf("\nMasukkan ID parent yg akan dihapus : ");scanf("%d",&id); 	
-				deleteAfterParent(&L,id);
+				printf("\tMasukkan nama parent yg akan dihapus data setelahnya : : "); fflush(stdin); gets(targetName);
+				deleteAfterParent(&L,targetName);
 				break;				
 			}
 			break;

@@ -8,13 +8,18 @@ typedef char string[100];
 typedef struct tChild* adrChild;
 typedef struct tParent* adrParent;
 
+typedef struct {
+	string name;
+	int age;
+} Person;
+
 typedef struct tChild{
 	int id;
 	adrChild nextChild;
 }Child;
 
 typedef struct tParent{
-	char id;
+	Person person;
 	adrParent nextParent;
 	adrChild firstChild;
 }Parent;
@@ -25,17 +30,17 @@ typedef struct{
 
 void createEmpty(ListParent *L);
 int isEmpty(ListParent L);
-
+Person makePerson(string name, int age);
 int HaveChild(adrParent P);
-adrParent AlokasiP(int id);
-adrParent FindParent(ListParent L,int id);
-void insertFirstParent(ListParent *L,int databaru);
-void insertLastParent(ListParent *L,int databaru);
-void insertAfterParent(ListParent *L,int datasebelum,int databaru);
+adrParent AlokasiP(Person person);
+adrParent FindParent(ListParent L,string name);
+void insertFirstParent(ListParent *L,Person databaru);
+void insertLastParent(ListParent *L,Person databaru);
+void insertAfterParent(ListParent *L,string datasebelum,Person databaru);
 
 void deleteFirstParent(ListParent *L);
 void deleteLastParent(ListParent *L);
-void deleteAfterParent(ListParent *L, int datasebelum);
+void deleteAfterParent(ListParent *L, string datasebelum);
 void printAll(ListParent L);
 
 adrChild AlokasiC(char id);
