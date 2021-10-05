@@ -174,11 +174,11 @@ adrChild AlokasiC(char id)
 	C->nextChild=NULL;
 	return C;
 }
-void insertFirstChild(ListParent *L,int idP, char idC)
+void insertFirstChild(ListParent *L,string name, char idC)
 {
 	adrChild C;
 	adrParent P;
-	// P=FindParent((*L),idP);
+	P=FindParent((*L),name);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else
@@ -188,15 +188,15 @@ void insertFirstChild(ListParent *L,int idP, char idC)
 		P->firstChild=C;
 	}	
 }
-void insertLastChild(ListParent *L,int idP, char idC)
+void insertLastChild(ListParent *L,string name, char idC)
 {
 	adrChild C, lastChild;
 	adrParent P;
-	// P=FindParent((*L),idP);
+	P=FindParent((*L),name);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))
-		insertFirstChild(&(*L),idP,idC);
+		insertFirstChild(&(*L),name,idC);
 	else
 	{
 		C=AlokasiC(idC);
@@ -208,11 +208,11 @@ void insertLastChild(ListParent *L,int idP, char idC)
 		lastChild->nextChild=C;
 	}				
 }
-void deleteFirstChild(ListParent *L,int idP)
+void deleteFirstChild(ListParent *L,string name)
 {
 	adrChild del;
 	adrParent P;
-	// P=FindParent((*L),idP);
+	P=FindParent((*L),name);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))			
@@ -224,17 +224,17 @@ void deleteFirstChild(ListParent *L,int idP)
 		printf("DELETED");
 	}	
 }
-void deleteLastChild(ListParent *L,int idP)
+void deleteLastChild(ListParent *L,string name)
 {
 	adrChild del, bantu;
 	adrParent P,temp;
-	// P=FindParent((*L),idP);
+	P=FindParent((*L),name);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))			
 		printf("\nTidak punya anak");
 	else if(P->firstChild->nextChild==NULL)
-		deleteFirstChild(&(*L),idP);
+		deleteFirstChild(&(*L),name);
 	else{
 		bantu=P->firstChild;
 		while(bantu->nextChild->nextChild!=NULL)
@@ -259,7 +259,7 @@ void printChild(adrChild C)
 		}
 	}
 }
-void printChildByParent(ListParent L,int idP)
+void printChildByParent(ListParent L,string name)
 {
 	adrParent P;
 	adrChild C;
@@ -267,12 +267,12 @@ void printChildByParent(ListParent L,int idP)
 		printf("List kosong");
 	else
 	{
-		// P=FindParent(L,idP);
+		P=FindParent(L,name);
 		if(P==NULL)
 			printf("\nParent tdk ada");
 		else
 		{
-			printf("\nId Parent : %d",P->person.name);
+			printf("\nNama Parent : %s",P->person.name);
 			if(!HaveChild(P))			
 				printf("\nTidak punya anak");	
 			else

@@ -72,26 +72,26 @@ int main(int argc, char *argv[]) {
 			switch(menu)
 			{
 				case 1 : 
-					printf("\nMasukkan IDParent : ");scanf("%d",&id);
+					printf("\tMasukkan nama parent: "); fflush(stdin); gets(targetName);
 					printf("\nMasukkan IDChild : ");scanf(" %c",&idC);
-					insertFirstChild(&L,id,idC);
+					insertFirstChild(&L,targetName,idC);
 					break;
 				case 2 :
-					printf("\nMasukkan IDParent : ");scanf("%d",&id);
+					printf("\tMasukkan nama parent: "); fflush(stdin); gets(targetName);
 					printf("\nMasukkan IDChild : ");scanf(" %c",&idC);
-					insertLastChild(&L,id,idC);
+					insertLastChild(&L,targetName,idC);
 					break;		
 				case 3 :
-					printf("\nMasukkan IDParent : ");scanf("%d",&id);
-					deleteFirstChild(&L,id);
+					printf("\tMasukkan nama parent: "); fflush(stdin); gets(targetName);
+					deleteFirstChild(&L,targetName);
 					break;
 				case 4 : 
-					printf("\nMasukkan IDParent : ");scanf("%d",&id);
-					deleteLastChild(&L,id);
+					printf("\tMasukkan nama parent: "); fflush(stdin); gets(targetName);
+					deleteLastChild(&L,targetName);
 					break;	
 				case 5 : 
-					printf("\nMasukkan IDParent : ");scanf("%d",&id);
-					printChildByParent(L,id);
+					printf("\tMasukkan nama parent: "); fflush(stdin); gets(targetName);
+					printChildByParent(L,targetName);
 					break;											 					
 			}
 			break;	
