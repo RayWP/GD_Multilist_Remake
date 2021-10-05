@@ -1,4 +1,5 @@
-#include "source.c"
+#include "source.c" //unfreeze this if you use visual studio code
+#include "header.h" //unfreeze this if you use dev-cpp
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
