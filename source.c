@@ -42,10 +42,8 @@ adrParent FindParent(ListParent L,string name)
 	adrParent P=L.first;
 	while(P!=NULL)
 	{
-		printf("iteration\n");
 		if(strcmpi(P->person.name,name)!=0) 
 		{
-			printf("\n searchign parent");
 			P=P->nextParent;
 		} else {
 			return P;
@@ -103,7 +101,7 @@ void deleteFirstParent(ListParent *L)
 		del=(*L).first;
 		(*L).first=(*L).first->nextParent;
 		free(del);
-		printf("DELETED");	
+		printf("DELETED FIRST PARENT");	
 	}	
 }
 void deleteLastParent(ListParent *L)
@@ -112,9 +110,9 @@ void deleteLastParent(ListParent *L)
 	if(isEmpty(*L))
 		printf("List kosong");
 	else{
-		if((*L).first->nextParent==NULL)
+		if((*L).first->nextParent==NULL) {
 			deleteFirstParent(&(*L));
-		else
+		}else {
 			bantu=(*L).first;
 			while(bantu->nextParent->nextParent!=NULL)
 			{
@@ -123,7 +121,8 @@ void deleteLastParent(ListParent *L)
 			del=bantu->nextParent;
 			bantu->nextParent=NULL;
 			free(del);
-			printf("DELETED");	
+			printf("DELETED LAST Parent");
+		}	
 	}	
 }
 void deleteAfterParent(ListParent *L, string datasebelum)
@@ -154,7 +153,8 @@ void printAll(ListParent L)
 		P=L.first;
 		while(P!=NULL)
 		{
-			printf("\nID Parent : %s",P->person.name);
+			printf("\nParent name : %s",P->person.name);
+			printf("\nParent age : %d",P->person.age);
 			if(HaveChild(P))
 			{
 				C=P->firstChild;
@@ -178,7 +178,7 @@ void insertFirstChild(ListParent *L,int idP, char idC)
 {
 	adrChild C;
 	adrParent P;
-	P=FindParent((*L),idP);
+	// P=FindParent((*L),idP);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else
@@ -192,7 +192,7 @@ void insertLastChild(ListParent *L,int idP, char idC)
 {
 	adrChild C, lastChild;
 	adrParent P;
-	P=FindParent((*L),idP);
+	// P=FindParent((*L),idP);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))
@@ -212,7 +212,7 @@ void deleteFirstChild(ListParent *L,int idP)
 {
 	adrChild del;
 	adrParent P;
-	P=FindParent((*L),idP);
+	// P=FindParent((*L),idP);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))			
@@ -228,7 +228,7 @@ void deleteLastChild(ListParent *L,int idP)
 {
 	adrChild del, bantu;
 	adrParent P,temp;
-	P=FindParent((*L),idP);
+	// P=FindParent((*L),idP);
 	if(P==NULL)
 		printf("Parent tidak ada");
 	else if(!HaveChild(P))			
@@ -267,7 +267,7 @@ void printChildByParent(ListParent L,int idP)
 		printf("List kosong");
 	else
 	{
-		P=FindParent(L,idP);
+		// P=FindParent(L,idP);
 		if(P==NULL)
 			printf("\nParent tdk ada");
 		else
