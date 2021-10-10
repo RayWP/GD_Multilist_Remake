@@ -47,6 +47,6 @@ adrChild AlokasiC(char id);
 void printChild(adrChild C);
 void insertFirstChild(ListParent *L,string name, char idC);
 void insertLastChild(ListParent *L,string name, char idC);
-void deleteFirstChild(ListParent *L,string nam);
+void deleteFirstChild(ListParent *L,string name);
 void deleteLastChild(ListParent *L,string name);
 void printChildByParent(ListParent L,string name);
