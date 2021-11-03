@@ -67,7 +67,7 @@ void insertLastParent(ListParent *L,Person databaru)
 		insertFirstParent(&(*L),databaru);
 	else{
 		P=AlokasiP(databaru);
-		last=(*L).first;
+		last=L->first;
 		while(last->nextParent!=NULL)
 		{
 			last=last->nextParent;
